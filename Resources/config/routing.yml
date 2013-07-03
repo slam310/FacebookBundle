@@ -1,4 +1,0 @@
-fbWriteAuthInSession:
-    pattern:  /fb/writeAuthInSession
-    defaults: { _controller: BITFacebookBundle:Auth:writeAuthInSession }
-    methods: [POST]
