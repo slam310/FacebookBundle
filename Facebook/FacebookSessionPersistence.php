@@ -126,4 +126,32 @@ class FacebookSessionPersistence extends \BaseFacebook
   {
     return $this->prefix . implode( '_', array( 'fb', $this->getAppId( ), $key, ) );
   }
+  
+  public function query( $fql, $accessToken = null )
+  {
+    $params = array( );
+    $params[ 'method' ] = 'fql.query';
+    $params[ 'query' ] = $fql;
+    
+    if ( !empty( $accessToken ) )
+      $params[ 'access_token' ] = $accessToken;
+    
+    return $this->api( $params );
+  }
+  
+  public function getFriends( $userId )
+  {
+    $fql = "SELECT uid, first_name, last_name, email FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = %s)";
+    $fql = sprintf( $fql, $userId );
+    
+    return $this->query( $fql, $this->getAccessToken( ) );
+  }
+  
+  public function getFriendsInfo( $friendIds )
+  {
+    $fql = "SELECT uid, first_name, last_name, email FROM user WHERE uid IN (%s)";
+    $fql = sprintf( $fql, $friendIds );
+    
+    return $this->query( $fql );
+  }
 }
