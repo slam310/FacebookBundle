@@ -4,7 +4,7 @@ function fbLogin(callbackFnc, setAccessToken){
   			if (response.status === 'connected')
   			  setAccessToken(response.authResponse.accessToken);
   			else
-  			  FB.login(callbackFnc, {{ facebook_scope }});
+  			  FB.login(callbackFnc, {{ facebook_scope() }});
   		});
   	}
 }
