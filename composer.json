@@ -1,30 +1,25 @@
 {
     "name": "bitgandtter/facebook-bundle",
     "type": "symfony-bundle",
-    "description": "Integrate the Facebook Platform into your Symfony2 application.",
-    "keywords": ["facebook"],
-    "homepage": "http://friendsofsymfony.github.com",
+    "description": "Integrate Facebook Services into Symfony 2 app.",
+    "keywords": ["facebook", "user", "contacts"],
+    "homepage": "http://bitgandtter.github.com",
     "license": "MIT",
     "authors": [
         {
-            "name":"Kris Wallsmith",
-            "email":"kris.wallsmith@gmail.com",
-            "homepage":"http://kriswallsmith.net/"
-        },
-        {
-            "name": "FriendsOfSymfony Community",
-            "homepage": "https://github.com/friendsofsymfony/FOSFacebookBundle/contributors"
+            "name":"Yasmany Cubela Medina",
+            "email":"yasmanycm@gmail.com"
         }
     ],
     "require": {
         "php": ">=5.3.2",
-        "symfony/framework-bundle": ">=2.1",
-        "symfony/security-bundle": ">=2.1",
-        "symfony/twig-bundle": ">=2.1",
+        "symfony/framework-bundle": ">=2.3",
+        "symfony/security-bundle": ">=2.3",
+        "symfony/twig-bundle": ">=2.3",
         "facebook/php-sdk": ">=v3.2.2"
     },
     "autoload": {
-        "psr-0": { "FOS\\FacebookBundle": "" }
+        "psr-0": { "BIT\\FacebookBundle": "" }
     },
-    "target-dir": "FOS/FacebookBundle"
+    "target-dir": "BIT/FacebookBundle"
 }

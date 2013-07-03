@@ -1,15 +1,14 @@
 <?php
 
 /*
- * This file is part of the FOSFacebookBundle package.
+ * This file is part of the BITFacebookBundle package.
  *
- * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
+ * (c) bitgandtter <http://bitgandtter.github.com/>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
-namespace FOS\FacebookBundle\Security\Authentication\Token;
+namespace BIT\FacebookBundle\Security\Authentication\Token;
 use Symfony\Component\Security\Core\Authentication\Token\AbstractToken;
 
 class FacebookUserToken extends AbstractToken
@@ -23,9 +22,7 @@ class FacebookUserToken extends AbstractToken
     $this->setUser( $uid );
     
     if ( !empty( $uid ) )
-    {
       $this->setAuthenticated( true );
-    }
     
     $this->providerKey = $providerKey;
   }

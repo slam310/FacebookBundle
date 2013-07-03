@@ -1,15 +1,14 @@
 <?php
 
 /*
- * This file is part of the FOSFacebookBundle package.
+ * This file is part of the BITFacebookBundle package.
  *
- * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
+ * (c) bitgandtter <http://bitgandtter.github.com/>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
-namespace FOS\FacebookBundle\Security\Authentication\Provider;
+namespace BIT\FacebookBundle\Security\Authentication\Provider;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserCheckerInterface;
@@ -18,8 +17,8 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authentication\Provider\AuthenticationProviderInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
-use FOS\FacebookBundle\Security\User\UserManagerInterface;
-use FOS\FacebookBundle\Security\Authentication\Token\FacebookUserToken;
+use BIT\FacebookBundle\Security\User\UserManagerInterface;
+use BIT\FacebookBundle\Security\Authentication\Token\FacebookUserToken;
 
 class FacebookProvider implements AuthenticationProviderInterface
 {
@@ -33,16 +32,13 @@ class FacebookProvider implements AuthenticationProviderInterface
   public function __construct( $providerKey, \BaseFacebook $facebook, Session $session,
       UserProviderInterface $userProvider = null, UserCheckerInterface $userChecker = null, $createIfNotExists = false )
   {
+    $errorMessage = '$userChecker cannot be null, if $userProvider is not null.';
     if ( null !== $userProvider && null === $userChecker )
-    {
-      throw new \InvalidArgumentException( '$userChecker cannot be null, if $userProvider is not null.');
-    }
+      throw new \InvalidArgumentException( $errorMessage);
     
+    $errorMessage = 'The $userProvider must implement UserManagerInterface if $createIfNotExists is true.';
     if ( $createIfNotExists && !$userProvider instanceof UserManagerInterface )
-    {
-      throw new \InvalidArgumentException( 
-          'The $userProvider must implement UserManagerInterface if $createIfNotExists is true.');
-    }
+      throw new \InvalidArgumentException( $errorMessage);
     
     $this->providerKey = $providerKey;
     $this->facebook = $facebook;
@@ -63,9 +59,7 @@ class FacebookProvider implements AuthenticationProviderInterface
   public function authenticate( TokenInterface $token )
   {
     if ( !$this->supports( $token ) )
-    {
       return null;
-    }
     
     $user = $token->getUser( );
     if ( $user instanceof UserInterface )
@@ -108,9 +102,7 @@ class FacebookProvider implements AuthenticationProviderInterface
   protected function createAuthenticatedToken( $uid )
   {
     if ( null === $this->userProvider )
-    {
       return new FacebookUserToken( $this->providerKey, $uid);
-    }
     
     try
     {
@@ -120,17 +112,13 @@ class FacebookProvider implements AuthenticationProviderInterface
     catch ( UsernameNotFoundException $ex )
     {
       if ( !$this->createIfNotExists )
-      {
         throw $ex;
-      }
       
       $user = $this->userProvider->createUserFromUid( $uid );
     }
     
     if ( !$user instanceof UserInterface )
-    {
       throw new \RuntimeException( 'User provider did not return an implementation of user interface.');
-    }
     
     return new FacebookUserToken( $this->providerKey, $user, $user->getRoles( ));
   }

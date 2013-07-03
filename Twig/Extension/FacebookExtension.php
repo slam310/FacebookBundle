@@ -1,17 +1,16 @@
 <?php
 
 /*
- * This file is part of the FOSFacebookBundle package.
+ * This file is part of the BITFacebookBundle package.
  *
- * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
+ * (c) bitgandtter <http://bitgandtter.github.com/>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
-namespace FOS\FacebookBundle\Twig\Extension;
-use FOS\FacebookBundle\Templating\Helper\FacebookHelper;
+namespace BIT\FacebookBundle\Twig\Extension;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use BIT\FacebookBundle\Templating\Helper\FacebookHelper;
 
 class FacebookExtension extends \Twig_Extension
 {

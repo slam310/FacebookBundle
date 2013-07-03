@@ -1,16 +1,23 @@
 <?php
 
-namespace FOS\FacebookBundle\Facebook;
+/*
+ * This file is part of the BITFacebookBundle package.
+ *
+ * (c) bitgandtter <http://bitgandtter.github.com/>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+namespace BIT\FacebookBundle\Facebook;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * Implements Symfony2 session persistence for Facebook.
  *
- * @author Johannes M. Schmitt <schmittjoh@gmail.com>
  */
 class FacebookSessionPersistence extends \BaseFacebook
 {
-  const PREFIX = '_fos_facebook_';
+  const PREFIX = '_bit_facebook_';
   
   protected $session;
   protected $prefix;
@@ -117,7 +124,6 @@ class FacebookSessionPersistence extends \BaseFacebook
   
   protected function constructSessionVariableName( $key )
   {
-    return $this->prefix
-        . implode( '_', array( 'fb', $this->getAppId( ), $key, ) );
+    return $this->prefix . implode( '_', array( 'fb', $this->getAppId( ), $key, ) );
   }
 }

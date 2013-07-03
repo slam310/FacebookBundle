@@ -1,15 +1,14 @@
 <?php
 
 /*
- * This file is part of the FOSFacebookBundle package.
+ * This file is part of the BITFacebookBundle package.
  *
- * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
+ * (c) bitgandtter <http://bitgandtter.github.com/>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
-namespace FOS\FacebookBundle\Templating\Helper;
+namespace BIT\FacebookBundle\Templating\Helper;
 use Symfony\Component\Templating\Helper\Helper;
 use Symfony\Component\Templating\EngineInterface;
 
@@ -55,22 +54,18 @@ class FacebookHelper extends Helper
   public function initialize( $parameters = array( ), $name = null )
   {
     $name = $name ? : 'FOSFacebookBundle::initialize.html.php';
-    return $this->templating
-        ->render( $name,
-            $parameters
-                + array( 'async' => true, 'fbAsyncInit' => '', 'appId' => ( string ) $this->facebook->getAppId( ),
-                    'xfbml' => false, 'oauth' => true, 'status' => false, 'cookie' => true,
-                    'logging' => $this->logging, 'culture' => $this->culture, 'onlycode' => false ) );
+    $params = array( 'async' => true, 'fbAsyncInit' => '', 'appId' => ( string ) $this->facebook->getAppId( ),
+        'xfbml' => false, 'oauth' => true, 'status' => false, 'cookie' => true, 'logging' => $this->logging,
+        'culture' => $this->culture, 'onlycode' => false );
+    return $this->templating->render( $name, $parameters + $params );
   }
   
   public function loginButton( $parameters = array( ), $name = null )
   {
     $name = $name ? : 'FOSFacebookBundle::loginButton.html.php';
-    return $this->templating
-        ->render( $name,
-            $parameters
-                + array( 'autologoutlink' => 'false', 'label' => '', 'scope' => implode( ',', $this->scope ),
-                    'onlycode' => false ) );
+    $params = array( 'autologoutlink' => 'false', 'label' => '', 'scope' => implode( ',', $this->scope ),
+        'onlycode' => false );
+    return $this->templating->render( $name, $parameters + $params );
   }
   
   public function scope( $name = null )
@@ -95,10 +90,6 @@ class FacebookHelper extends Helper
   {
     return $this->facebook->getLogoutUrl( $parameters );
   }
-  
-  /**
-   * @codeCoverageIgnore
-   */
   
   public function getName( )
   {

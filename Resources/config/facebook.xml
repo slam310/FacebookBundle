@@ -6,26 +6,26 @@
 
 	<services>
 
-		<service id="fos_facebook.api" class="%fos_facebook.api.class%">
+		<service id="bit_facebook.api" class="%bit_facebook.api.class%">
 			<argument type="collection">
-				<argument key="appId">%fos_facebook.app_id%</argument>
-				<argument key="secret">%fos_facebook.secret%</argument>
-				<argument key="cookie">%fos_facebook.cookie%</argument>
-				<argument key="domain">%fos_facebook.domain%</argument>
+				<argument key="appId">%bit_facebook.app_id%</argument>
+				<argument key="secret">%bit_facebook.secret%</argument>
+				<argument key="cookie">%bit_facebook.cookie%</argument>
+				<argument key="domain">%bit_facebook.domain%</argument>
 			</argument>
 			<argument type="service" id="session" />
 		</service>
 
-		<service id="fos_facebook.helper" class="%fos_facebook.helper.class%">
+		<service id="bit_facebook.helper" class="%bit_facebook.helper.class%">
 			<argument type="service" id="templating" />
-			<argument type="service" id="fos_facebook.api" />
-			<argument>%fos_facebook.logging%</argument>
-			<argument>%fos_facebook.culture%</argument>
-			<argument>%fos_facebook.permissions%</argument>
+			<argument type="service" id="bit_facebook.api" />
+			<argument>%bit_facebook.logging%</argument>
+			<argument>%bit_facebook.culture%</argument>
+			<argument>%bit_facebook.permissions%</argument>
 			<tag name="templating.helper" alias="facebook" />
 		</service>
 
-		<service id="fos_facebook.twig" class="%fos_facebook.twig.class%">
+		<service id="bit_facebook.twig" class="%bit_facebook.twig.class%">
 			<argument type="service" id="service_container" />
 			<tag name="twig.extension" />
 		</service>
