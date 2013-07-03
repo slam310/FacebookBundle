@@ -95,14 +95,10 @@ class FacebookHelper extends Helper
     return $this->facebook->getLoginUrl( array_merge( $parameters, $defaults ) );
   }
   
-  public function loginFunction( $loginCheck, $setAccessTocken )
+  public function loginFunction( )
   {
-    $parameters = array( );
-    $parameters[ 'loginCheck' ] = $loginCheck;
-    $parameters[ 'setAccessToken' ] = $setAccessTocken;
-    
     $name = 'BITFacebookBundle::loginFunction.html.twig';
-    return $this->templating->render( $name, $parameters );
+    return $this->templating->render( $name, array( ) );
   }
   
   public function logoutUrl( $parameters = array( ), $name = null )

@@ -68,9 +68,9 @@ class FacebookExtension extends \Twig_Extension
     return $this->helper( )->scope( );
   }
   
-  public function renderLoginFunction( $loginCheck, $setAccessTocken )
+  public function renderLoginFunction( )
   {
-    return $this->helper( )->loginFunction( $loginCheck, $setAccessTocken );
+    return $this->helper( )->loginFunction( );
   }
   
   public function renderLoginUrl( $redirectUtl, $parameters = array( ) )
