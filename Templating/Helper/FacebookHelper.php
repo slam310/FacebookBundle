@@ -66,7 +66,7 @@ class FacebookHelper extends Helper
     $defaults[ 'onlycode' ] = false;
     
     $name = 'BITFacebookBundle::initialize.html.twig';
-    return $this->templating->render( $name, array_merge( $parameters, $defaults ) );
+    return $this->templating->render( $name, array_merge( $defaults, $parameters ) );
   }
   
   public function loginButton( $parameters = array( ) )
@@ -78,7 +78,7 @@ class FacebookHelper extends Helper
     $defaults[ 'onlycode' ] = false;
     
     $name = 'BITFacebookBundle::loginButton.html.twig';
-    return $this->templating->render( $name, array_merge( $parameters, $defaults ) );
+    return $this->templating->render( $name, array_merge( $defaults, $parameters ) );
   }
   
   public function scope( )
@@ -92,7 +92,7 @@ class FacebookHelper extends Helper
   {
     $parameters[ "redirect_uri" ] = $redirectUrl . "?facebook=true";
     $defaults = array( 'scope' => implode( ',', $this->scope ) );
-    return $this->facebook->getLoginUrl( array_merge( $parameters, $defaults ) );
+    return $this->facebook->getLoginUrl( array_merge( $defaults, $parameters ) );
   }
   
   public function loginFunction( )
