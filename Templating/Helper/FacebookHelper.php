@@ -51,39 +51,58 @@ class FacebookHelper extends Helper
    * @return string An HTML string
    */
   
-  public function initialize( $parameters = array( ), $name = null )
+  public function initialize( $parameters = array( ) )
   {
-    $name = $name ? : 'BITFacebookBundle::initialize.html.php';
-    $params = array( 'async' => true, 'fbAsyncInit' => '', 'appId' => ( string ) $this->facebook->getAppId( ),
-        'xfbml' => false, 'oauth' => true, 'status' => false, 'cookie' => true, 'logging' => $this->logging,
-        'culture' => $this->culture, 'onlycode' => false );
-    return $this->templating->render( $name, $parameters + $params );
+    $defaults = array( );
+    $defaults[ 'async' ] = true;
+    $defaults[ 'fbAsyncInit' ] = '';
+    $defaults[ 'appId' ] = ( string ) $this->facebook->getAppId( );
+    $defaults[ 'xfbml' ] = false;
+    $defaults[ 'oauth' ] = true;
+    $defaults[ 'status' ] = false;
+    $defaults[ 'cookie' ] = true;
+    $defaults[ 'logging' ] = $this->logging;
+    $defaults[ 'culture' ] = $this->culture;
+    $defaults[ 'onlycode' ] = false;
+    
+    $name = 'BITFacebookBundle::initialize.html.twig';
+    return $this->templating->render( $name, array_merge( $parameters, $defaults ) );
   }
   
-  public function loginButton( $parameters = array( ), $name = null )
+  public function loginButton( $parameters = array( ) )
   {
-    $name = $name ? : 'BITFacebookBundle::loginButton.html.php';
-    $params = array( 'autologoutlink' => 'false', 'label' => '', 'scope' => implode( ',', $this->scope ),
-        'onlycode' => false );
-    return $this->templating->render( $name, $parameters + $params );
+    $defaults = array( );
+    $defaults[ 'autologoutlink' ] = 'false';
+    $defaults[ 'label' ] = '';
+    $defaults[ 'scope' ] = implode( ',', $this->scope );
+    $defaults[ 'onlycode' ] = false;
+    
+    $name = 'BITFacebookBundle::loginButton.html.twig';
+    return $this->templating->render( $name, array_merge( $parameters, $defaults ) );
   }
   
-  public function scope( $name = null )
+  public function scope( )
   {
-    $name = $name ? : 'BITFacebookBundle::scope.html.twig';
-    return $this->templating->render( $name, array( 'scope' => implode( ',', $this->scope ) ) );
+    $parameters = array( 'scope' => implode( ',', $this->scope ) );
+    $name = 'BITFacebookBundle::scope.html.twig';
+    return $this->templating->render( $name, $parameters );
   }
   
-  public function loginUrl( $redirectUrl, $parameters = array( ) )
+  public function loginUrl( $redirectUrl )
   {
     $parameters[ "redirect_uri" ] = $redirectUrl . "?facebook=true";
-    return $this->facebook->getLoginUrl( $parameters + array( 'scope' => implode( ',', $this->scope ) ) );
+    $defaults = array( 'scope' => implode( ',', $this->scope ) );
+    return $this->facebook->getLoginUrl( array_merge( $parameters, $defaults ) );
   }
   
-  public function loginFunction( $loginCheck, $name = null )
+  public function loginFunction( $loginCheck, $setAccessTocken )
   {
-    $name = $name ? : 'BITFacebookBundle::loginFunction.html.twig';
-    return $this->templating->render( $name, array( 'loginCheck' => $loginCheck ) );
+    $parameters = array( );
+    $parameters[ 'loginCheck' ] = $loginCheck;
+    $parameters[ 'setAccessToken' ] = $setAccessTocken;
+    
+    $name = 'BITFacebookBundle::loginFunction.html.twig';
+    return $this->templating->render( $name, $parameters );
   }
   
   public function logoutUrl( $parameters = array( ), $name = null )

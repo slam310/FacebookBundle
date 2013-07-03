@@ -53,14 +53,14 @@ class FacebookExtension extends \Twig_Extension
     return $helper = $this->container->get( 'bit_facebook.helper' );
   }
   
-  public function renderInitialize( $parameters = array( ), $name = null )
+  public function renderInitialize( $parameters = array( ) )
   {
-    return $this->helper( )->initialize( $parameters, $name ? : 'BITFacebookBundle::initialize.html.twig' );
+    return $this->helper( )->initialize( $parameters );
   }
   
-  public function renderLoginButton( $parameters = array( ), $name = null )
+  public function renderLoginButton( $parameters = array( ) )
   {
-    return $this->helper( )->loginButton( $parameters, $name ? : 'BITFacebookBundle::loginButton.html.twig' );
+    return $this->helper( )->loginButton( $parameters );
   }
   
   public function renderScope( )
@@ -68,9 +68,9 @@ class FacebookExtension extends \Twig_Extension
     return $this->helper( )->scope( );
   }
   
-  public function renderLoginFunction( $loginCheck )
+  public function renderLoginFunction( $loginCheck, $setAccessTocken )
   {
-    return $this->helper( )->loginFunction( $loginCheck );
+    return $this->helper( )->loginFunction( $loginCheck, $setAccessTocken );
   }
   
   public function renderLoginUrl( $redirectUtl, $parameters = array( ) )
@@ -78,7 +78,7 @@ class FacebookExtension extends \Twig_Extension
     return $this->helper( )->loginUrl( $redirectUtl, $parameters );
   }
   
-  public function renderLogoutUrl( $parameters = array( ), $name = null )
+  public function renderLogoutUrl( $parameters = array( ) )
   {
     return $this->helper( )->logoutUrl( $parameters );
   }

@@ -1,25 +1,10 @@
-function fbLogin(callbackFnc, notAuthCallbackFnc){
+function fbLogin(callbackFnc, setAccessToken){
   	if (typeof (FB) != 'undefined' && FB != null) {
   		FB.getLoginStatus(function(response) {
-  			if (response.status === 'connected') {
-  			  var accessToken = response.authResponse.accessToken;
-  			  $.post("{{ path('fbWriteAuthInSession') }}", {
-            		"accessToken" : accessToken
-            	}, function(response) {
-            		if (response.accessToken == accessToken) {
-            		    $.oauthpopup({
-                    			path : "{{ path(loginCheck) }}" + "?facebook=true",
-                    			callback : callbackFnc
-                    		});
-            		}
-            	});
-  			}
-  			else {
-  			    $.oauthpopup({
-        			path : "{{ facebook_login_url(url(loginCheck)) }}",
-        			callback : callbackFnc
-        		});
-  			}
+  			if (response.status === 'connected')
+  			  setAccessToken(response.authResponse.accessToken);
+  			else
+  			  FB.login();
   		});
   	}
 }
