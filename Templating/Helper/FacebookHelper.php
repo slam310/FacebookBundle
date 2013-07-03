@@ -53,7 +53,7 @@ class FacebookHelper extends Helper
   
   public function initialize( $parameters = array( ), $name = null )
   {
-    $name = $name ? : 'FOSFacebookBundle::initialize.html.php';
+    $name = $name ? : 'BITFacebookBundle::initialize.html.php';
     $params = array( 'async' => true, 'fbAsyncInit' => '', 'appId' => ( string ) $this->facebook->getAppId( ),
         'xfbml' => false, 'oauth' => true, 'status' => false, 'cookie' => true, 'logging' => $this->logging,
         'culture' => $this->culture, 'onlycode' => false );
@@ -62,7 +62,7 @@ class FacebookHelper extends Helper
   
   public function loginButton( $parameters = array( ), $name = null )
   {
-    $name = $name ? : 'FOSFacebookBundle::loginButton.html.php';
+    $name = $name ? : 'BITFacebookBundle::loginButton.html.php';
     $params = array( 'autologoutlink' => 'false', 'label' => '', 'scope' => implode( ',', $this->scope ),
         'onlycode' => false );
     return $this->templating->render( $name, $parameters + $params );
@@ -70,7 +70,7 @@ class FacebookHelper extends Helper
   
   public function scope( $name = null )
   {
-    $name = $name ? : 'FOSFacebookBundle::scope.html.twig';
+    $name = $name ? : 'BITFacebookBundle::scope.html.twig';
     return $this->templating->render( $name, array( 'scope' => implode( ',', $this->scope ) ) );
   }
   
@@ -82,7 +82,7 @@ class FacebookHelper extends Helper
   
   public function loginFunction( $loginCheck, $name = null )
   {
-    $name = $name ? : 'FOSFacebookBundle::loginFunction.html.twig';
+    $name = $name ? : 'BITFacebookBundle::loginFunction.html.twig';
     return $this->templating->render( $name, array( 'loginCheck' => $loginCheck ) );
   }
   
