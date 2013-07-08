@@ -17,7 +17,6 @@ use Symfony\Component\Config\FileLocator;
 
 class BITFacebookExtension extends Extension
 {
-  protected $resources = array( 'facebook' => 'facebook.xml', 'security' => 'security.xml', );
   
   public function load( array $configs, ContainerBuilder $container )
   {
@@ -27,20 +26,11 @@ class BITFacebookExtension extends Extension
     
     $this->loadDefaults( $container );
     
-    if ( isset( $config[ 'alias' ] ) )
-    {
-      $container->setAlias( $config[ 'alias' ], 'bit_facebook.api' );
-    }
-    
     foreach ( array( 'api', 'helper', 'twig' ) as $attribute )
-    {
       $container->setParameter( 'bit_facebook.' . $attribute . '.class', $config[ 'class' ][ $attribute ] );
-    }
     
     foreach ( array( 'app_id', 'secret', 'cookie', 'domain', 'logging', 'culture', 'permissions' ) as $attribute )
-    {
       $container->setParameter( 'bit_facebook.' . $attribute, $config[ $attribute ] );
-    }
     
     if ( isset( $config[ 'file' ] ) && $container->hasDefinition( 'bit_facebook.api' ) )
     {
@@ -53,9 +43,7 @@ class BITFacebookExtension extends Extension
   {
     $loader = new XmlFileLoader( $container, new FileLocator( __DIR__ . '/../Resources/config'));
     
-    foreach ( $this->resources as $resource )
-    {
+    foreach ( array( 'facebook' => 'facebook.xml', 'security' => 'security.xml' ) as $resource )
       $loader->load( $resource );
-    }
   }
 }
