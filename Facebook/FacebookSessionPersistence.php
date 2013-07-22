@@ -139,18 +139,50 @@ class FacebookSessionPersistence extends \BaseFacebook
     return $this->api( $params );
   }
   
-  public function getFriends( $userId )
+  public function getFriends( $userId, $select = null, $orderBy = null, $offset = null, $limit = null )
   {
-    $fql = "SELECT uid, first_name, last_name, email FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = %s)";
-    $fql = sprintf( $fql, $userId );
+    if ( empty( $select ) )
+      $select = "uid, first_name, last_name, email";
+    
+    $fql = "SELECT %s FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = %s)";
+    $fql = sprintf( $fql, $select, $userId );
+    
+    if ( !empty( $orderBy ) )
+      $fql .= " ORDER BY " . $orderBy;
+    
+    if ( !empty( $offset ) || !empty( $limit ) )
+    {
+      if ( empty( $offset ) )
+        $offset = 1;
+      if ( empty( $limit ) )
+        $limit = 999999999999;
+      
+      $fql .= " LIMIT " . $offset . ", " . $limit;
+    }
     
     return $this->query( $fql, $this->getAccessToken( ) );
   }
   
-  public function getFriendsInfo( $friendIds )
+  public function getFriendsInfo( $friendIds, $select = null, $orderBy = null, $offset = null, $limit = null )
   {
-    $fql = "SELECT uid, first_name, last_name, email FROM user WHERE uid IN (%s)";
-    $fql = sprintf( $fql, $friendIds );
+    if ( empty( $select ) )
+      $select = "uid, first_name, last_name, email";
+    
+    $fql = "SELECT %s FROM user WHERE uid IN (%s)";
+    $fql = sprintf( $fql, $select, $userId );
+    
+    if ( !empty( $orderBy ) )
+      $fql .= " ORDER BY " . $orderBy;
+    
+    if ( !empty( $offset ) || !empty( $limit ) )
+    {
+      if ( empty( $offset ) )
+        $offset = 1;
+      if ( empty( $limit ) )
+        $limit = 999999999999;
+      
+      $fql .= " LIMIT " . $offset . ", " . $limit;
+    }
     
     return $this->query( $fql );
   }
