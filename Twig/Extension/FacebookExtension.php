@@ -42,7 +42,7 @@ class FacebookExtension extends \Twig_Extension
     $functions[ 'facebook_login_button' ] = new \Twig_Function_Method( $this, 'renderLoginButton', $extra);
     $functions[ 'facebook_scope' ] = new \Twig_Function_Method( $this, 'renderScope', $extra);
     $functions[ 'facebook_login_function' ] = new \Twig_Function_Method( $this, 'renderLoginFunction', $extra);
-    $functions[ 'facebook_set_access_token' ] = new \Twig_Function_Method( $this, 'renderSetAccessTokenFunction',
+    $functions[ 'facebook_check_login_status' ] = new \Twig_Function_Method( $this, 'renderCheckFBLoginStatusFunciton',
         $extra);
     $functions[ 'facebook_login_url' ] = new \Twig_Function_Method( $this, 'renderLoginUrl', $extra);
     $functions[ 'facebook_logout_url' ] = new \Twig_Function_Method( $this, 'renderLogoutUrl', $extra);
@@ -75,9 +75,9 @@ class FacebookExtension extends \Twig_Extension
     return $this->helper( )->loginFunction( );
   }
   
-  public function renderSetAccessTokenFunction( )
+  public function renderCheckFBLoginStatusFunction( )
   {
-    return $this->helper( )->setAccessTokenFunction( );
+    return $this->helper( )->checkFBLoginStatusFunction( );
   }
   
   public function renderLoginUrl( $redirectUtl, $parameters = array( ) )
