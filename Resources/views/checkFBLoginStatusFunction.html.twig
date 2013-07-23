@@ -1,4 +1,4 @@
-function checkFBLoginStatus(callbackFnc, setAccessToken){
+function checkFBLoginStatus(setAccessToken){
   	if (typeof (FB) != 'undefined' && FB != null) {
   		FB.getLoginStatus(function(response) {
   			if (response.status === 'connected')
