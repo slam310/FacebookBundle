@@ -101,7 +101,7 @@ class FacebookHelper extends Helper
     return $this->templating->render( $name, array( ) );
   }
   
-  public function loginFunction( )
+  public function setAccessTokenFunction( )
   {
     $name = 'BITFacebookBundle::setAccessTokenFunction.html.twig';
     return $this->templating->render( $name, array( ) );
