@@ -90,7 +90,7 @@ class FacebookHelper extends Helper
   
   public function loginUrl( $redirectUrl )
   {
-    $parameters[ "redirect_uri" ] = $redirectUrl . "?facebook=true";
+    $parameters[ "redirect_uri" ] = $redirectUrl;
     $defaults = array( 'scope' => implode( ',', $this->scope ) );
     return $this->facebook->getLoginUrl( array_merge( $defaults, $parameters ) );
   }
@@ -98,6 +98,12 @@ class FacebookHelper extends Helper
   public function loginFunction( )
   {
     $name = 'BITFacebookBundle::loginFunction.html.twig';
+    return $this->templating->render( $name, array( ) );
+  }
+  
+  public function checkFBLoginStatusFunction( )
+  {
+    $name = 'BITFacebookBundle::checkFBLoginStatusFunction.html.twig';
     return $this->templating->render( $name, array( ) );
   }
   

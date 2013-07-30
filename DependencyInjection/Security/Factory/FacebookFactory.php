@@ -19,9 +19,6 @@ class FacebookFactory extends AbstractFactory
   
   public function __construct( )
   {
-    $this->addOption( 'display', 'page' );
-    $this->addOption( 'app_url' );
-    $this->addOption( 'server_url' );
     $this->addOption( 'create_user_if_not_exists', false );
   }
   
