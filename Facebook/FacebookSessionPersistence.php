@@ -139,7 +139,7 @@ class FacebookSessionPersistence extends \BaseFacebook
     return $this->api( $params );
   }
   
-  public function getFriends( $userId, $select = null, $orderBy = null, $offset = null, $limit = null )
+  public function getFriends( $userId, $select = null, $orderBy = null, $offset = null, $limit = null, $retry = true )
   {
     if ( empty( $select ) )
       $select = "uid, first_name, last_name, email";
@@ -160,7 +160,20 @@ class FacebookSessionPersistence extends \BaseFacebook
       $fql .= " LIMIT " . $offset . ", " . $limit;
     }
     
-    return $this->query( $fql, $this->getAccessToken( ) );
+    try
+    {
+      return $this->query( $fql, $this->getAccessToken( ) );
+    }
+    catch ( \Exception $e )
+    {
+      if ( $retry )
+      {
+        sleep( 5 );
+        return $this->getFriends( $userId, $select, $orderBy, $offset, $limit, false );
+      }
+      
+      return array( );
+    }
   }
   
   public function getFriendsInfo( $friendIds, $select = null, $orderBy = null, $offset = null, $limit = null )

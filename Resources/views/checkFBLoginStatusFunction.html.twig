@@ -1,8 +1,12 @@
-function checkFBLoginStatus(setAccessToken){
+function checkFBLoginStatus(setAccessToken, notConnectedCallback){
   	if (typeof (FB) != 'undefined' && FB != null) {
+  	    if(notConnectedCallback == undefined)
+  	      notConnectedCallback=function(){};
   		FB.getLoginStatus(function(response) {
-  			if (response.status === 'connected')
-  			  setAccessToken(response.authResponse.accessToken);
+          if (response.status === 'connected')
+            setAccessToken(response.authResponse.accessToken);
+          else
+            notConnectedCallback(response);
   		});
   	}
 }
