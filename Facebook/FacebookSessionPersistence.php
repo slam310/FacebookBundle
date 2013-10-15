@@ -32,7 +32,6 @@ class FacebookSessionPersistence extends \BaseFacebook
   {
     $this->session = $session;
     $this->prefix = $prefix;
-    $this->session->start( );
     
     parent::__construct( $config );
   }
