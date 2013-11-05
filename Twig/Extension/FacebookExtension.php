@@ -5,7 +5,7 @@
  */
 namespace BIT\FacebookBundle\Twig\Extension;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Container;
 
 class FacebookExtension extends \Twig_Extension
 {
@@ -17,7 +17,7 @@ class FacebookExtension extends \Twig_Extension
    *
    * @param ContainerInterface $container
    */
-  public function __construct( ContainerBuilder $container )
+  public function __construct( Container $container )
   {
     $this->container = $container;
   }
