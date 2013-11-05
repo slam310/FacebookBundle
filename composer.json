@@ -1,25 +1,32 @@
 {
-    "name": "bitgandtter/facebook-bundle",
-    "type": "symfony-bundle",
-    "description": "Integrate Facebook Services into Symfony 2 app.",
-    "keywords": ["facebook", "user", "contacts"],
-    "homepage": "http://bitgandtter.github.com",
-    "license": "MIT",
-    "authors": [
-        {
-            "name":"Yasmany Cubela Medina",
-            "email":"yasmanycm@gmail.com"
-        }
-    ],
-    "require": {
-        "php": ">=5.3.2",
-        "symfony/framework-bundle": ">=2.3",
-        "symfony/security-bundle": ">=2.3",
-        "symfony/twig-bundle": ">=2.3",
-        "facebook/php-sdk": ">=v3.2.2"
-    },
-    "autoload": {
-        "psr-0": { "BIT\\FacebookBundle": "" }
-    },
-    "target-dir": "BIT/FacebookBundle"
+	"name" : "bitgandtter/facebook-bundle",
+	"description" : "Integrate Facebook Services into Symfony 2 app.",
+	"type" : "symfony-bundle",
+	"authors" : [{
+			"name" : "Yasmany Cubela Medina",
+			"email" : "yasmanycm@gmail.com"
+		}
+	],
+	"keywords" : [
+		"facebook",
+		"user",
+		"contacts"
+	],
+	"homepage" : "http://bitgandtter.github.com",
+	"license" : [
+		"MIT"
+	],
+	"require" : {
+		"facebook/php-sdk" : "v3.2.2",
+		"symfony/security-bundle" : ">=2.3",
+		"php" : ">=5.3.2",
+		"symfony/framework-bundle" : ">=2.3",
+		"symfony/twig-bundle" : ">=2.3"
+	},
+	"autoload" : {
+		"psr-0" : {
+			"BIT\\FacebookBundle" : ""
+		}
+	},
+	"target-dir" : "BIT/FacebookBundle"
 }
